@@ -27,6 +27,10 @@
 		8E964C1C2FEAB57300E2414C /* PrivacyNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PrivacyNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E964C2D2FEAB57500E2414C /* PrivacyNoteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PrivacyNoteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E964C372FEAB57500E2414C /* PrivacyNoteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PrivacyNoteUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E964C542FEAB77800E2414C /* AppClipApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppClipApp.swift; sourceTree = "<group>"; };
+		8E964C552FEAB77800E2414C /* AppClipContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppClipContentView.swift; sourceTree = "<group>"; };
+		8E964C572FEAB78800E2414C /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
+		8E964C582FEAB78A00E2414C /* MessagesRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesRootView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -92,6 +96,8 @@
 				8E964C302FEAB57500E2414C /* PrivacyNoteTests */,
 				8E964C3A2FEAB57500E2414C /* PrivacyNoteUITests */,
 				8E964C1D2FEAB57300E2414C /* Products */,
+				8E964C532FEAB77800E2414C /* PrivacyNoteClip */,
+				8E964C562FEAB78800E2414C /* PrivacyNoteMessages */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,6 +109,24 @@
 				8E964C372FEAB57500E2414C /* PrivacyNoteUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		8E964C532FEAB77800E2414C /* PrivacyNoteClip */ = {
+			isa = PBXGroup;
+			children = (
+				8E964C542FEAB77800E2414C /* AppClipApp.swift */,
+				8E964C552FEAB77800E2414C /* AppClipContentView.swift */,
+			);
+			path = PrivacyNoteClip;
+			sourceTree = "<group>";
+		};
+		8E964C562FEAB78800E2414C /* PrivacyNoteMessages */ = {
+			isa = PBXGroup;
+			children = (
+				8E964C572FEAB78800E2414C /* MessagesViewController.swift */,
+				8E964C582FEAB78A00E2414C /* MessagesRootView.swift */,
+			);
+			path = PrivacyNoteMessages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

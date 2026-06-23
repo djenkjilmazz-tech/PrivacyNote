@@ -1,80 +1,110 @@
-//
-//  ContentView.swift
-//  PrivacyNote
-//
-//  Created by Cenk Yilmaz on 23.06.2026.
-//
-
 import SwiftUI
 import SwiftData
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
+    @Query(sort: \Note.createdAt, order: .reverse) private var notes: [Note]
+    @State private var showingEditor = false
 
     var body: some View {
-        NavigationViewWrapper {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
-                    }
+        NavigationStack {
+            Group {
+                if notes.isEmpty {
+                    emptyState
+                } else {
+                    notesList
                 }
-                .onDelete(perform: deleteItems)
             }
-#if os(macOS)
-            .navigationSplitViewColumnWidth(min: 180, ideal: 200)
-#endif
+            .navigationTitle("PrivacyNote")
             .toolbar {
-#if os(iOS)
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-#endif
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
+                    Button {
+                        showingEditor = true
+                    } label: {
+                        Image(systemName: "square.and.pencil")
                     }
                 }
+            }
+            .sheet(isPresented: $showingEditor) {
+                NoteEditorView()
             }
         }
     }
 
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
+    private var emptyState: some View {
+        VStack(spacing: 16) {
+            Image(systemName: "lock.doc")
+                .font(.system(size: 64))
+                .foregroundStyle(.quaternary)
+            Text("Gizli Notunuz Yok")
+                .font(.title2.weight(.semibold))
+            Text("Notlarınız yakınlık sensörü ile korunur.\nOkumak için telefonu yüzünüze yaklaştırın.")
+                .font(.callout)
+                .foregroundStyle(.secondary)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal, 32)
+            Button {
+                showingEditor = true
+            } label: {
+                Label("İlk Notu Oluştur", systemImage: "plus")
+                    .padding(.horizontal, 20)
+                    .padding(.vertical, 10)
+            }
+            .buttonStyle(.borderedProminent)
+            .padding(.top, 8)
         }
     }
 
-    private func deleteItems(offsets: IndexSet) {
+    private var notesList: some View {
+        List {
+            ForEach(notes) { note in
+                NavigationLink {
+                    NoteDetailView(note: note)
+                } label: {
+                    NoteRowView(note: note)
+                }
+            }
+            .onDelete(perform: deleteNotes)
+        }
+        .listStyle(.insetGrouped)
+    }
+
+    private func deleteNotes(offsets: IndexSet) {
         withAnimation {
             for index in offsets {
-                modelContext.delete(items[index])
+                modelContext.delete(notes[index])
             }
         }
     }
 }
 
-fileprivate struct NavigationViewWrapper<Content: View>: View {
-    let content: () -> Content
+private struct NoteRowView: View {
+    let note: Note
 
     var body: some View {
-#if os(macOS)
-        NavigationSplitView {
-            content()
-        } detail: {
-            Text("Select an item")
+        HStack(spacing: 12) {
+            ZStack {
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(note.isProtected ? Color.orange.opacity(0.15) : Color.blue.opacity(0.15))
+                    .frame(width: 40, height: 40)
+                Image(systemName: note.isProtected ? "lock.fill" : "doc.text.fill")
+                    .foregroundStyle(note.isProtected ? .orange : .blue)
+            }
+
+            VStack(alignment: .leading, spacing: 4) {
+                Text(note.title.isEmpty ? "Başlıksız" : note.title)
+                    .font(.headline)
+                    .lineLimit(1)
+                Text(note.createdAt.formatted(date: .abbreviated, time: .shortened))
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
         }
-#else
-        content()
-#endif
+        .padding(.vertical, 4)
     }
 }
 
 #Preview {
     ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
+        .modelContainer(for: Note.self, inMemory: true)
 }
