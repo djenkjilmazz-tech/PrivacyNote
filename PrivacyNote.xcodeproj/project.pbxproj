@@ -6,6 +6,18 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		3AC4E776F0619B424218E437 /* AppClipApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E964C542FEAB77800E2414C /* AppClipApp.swift */; };
+		55E60A6FB24E868EB59948B7 /* Messages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E82F054CB844A3BF557B19C4 /* Messages.framework */; };
+		652BFE887390B295ECF8B28D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAC32FB734E14E8AEDF427D4 /* Foundation.framework */; };
+		7516790B1DD7947005CE868D /* PrivacyNoteMessages.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A796C73E3C8CD8F46AF901EF /* PrivacyNoteMessages.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		830798774AF582A497B2A1D0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAC32FB734E14E8AEDF427D4 /* Foundation.framework */; };
+		9F8BCBF74A0D3901242FB755 /* MessagesRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E964C582FEAB78A00E2414C /* MessagesRootView.swift */; };
+		BCE8E47B2FC91E0ED90D1267 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E964C572FEAB78800E2414C /* MessagesViewController.swift */; };
+		E7ECA48B5C1BA5FC687B00B5 /* PrivacyNoteClip.app in Embed App Clips */ = {isa = PBXBuildFile; fileRef = 79675FF999D1271C42DC769E /* PrivacyNoteClip.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		F03620CC65717BA30A107E4B /* AppClipContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E964C552FEAB77800E2414C /* AppClipContentView.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		8E964C2E2FEAB57500E2414C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -23,7 +35,33 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		2DFA0C5252AACF42A4D3702D /* Embed App Clips */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				E7ECA48B5C1BA5FC687B00B5 /* PrivacyNoteClip.app in Embed App Clips */,
+			);
+			name = "Embed App Clips";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8FE172E48A67A38077286942 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				7516790B1DD7947005CE868D /* PrivacyNoteMessages.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		79675FF999D1271C42DC769E /* PrivacyNoteClip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PrivacyNoteClip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E964C1C2FEAB57300E2414C /* PrivacyNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PrivacyNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E964C2D2FEAB57500E2414C /* PrivacyNoteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PrivacyNoteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E964C372FEAB57500E2414C /* PrivacyNoteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PrivacyNoteUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -31,6 +69,12 @@
 		8E964C552FEAB77800E2414C /* AppClipContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppClipContentView.swift; sourceTree = "<group>"; };
 		8E964C572FEAB78800E2414C /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		8E964C582FEAB78A00E2414C /* MessagesRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesRootView.swift; sourceTree = "<group>"; };
+		8E964C862FEABE8E00E2414C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		8E964C882FEABE8E00E2414C /* PrivacyNoteClip.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PrivacyNoteClip.entitlements; sourceTree = "<group>"; };
+		8E964C892FEABE9400E2414C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		A796C73E3C8CD8F46AF901EF /* PrivacyNoteMessages.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PrivacyNoteMessages.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		DAC32FB734E14E8AEDF427D4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		E82F054CB844A3BF557B19C4 /* Messages.framework */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = Messages.framework; path = System/Library/Frameworks/Messages.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -54,17 +98,30 @@
 		};
 		8E964C302FEAB57500E2414C /* PrivacyNoteTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = PrivacyNoteTests;
 			sourceTree = "<group>";
 		};
 		8E964C3A2FEAB57500E2414C /* PrivacyNoteUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = PrivacyNoteUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		643438576B7DE439A7D96EC2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				830798774AF582A497B2A1D0 /* Foundation.framework in Frameworks */,
+				55E60A6FB24E868EB59948B7 /* Messages.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8E964C192FEAB57300E2414C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -86,9 +143,34 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BBF83E9A92FDE7DED94F9CA1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				652BFE887390B295ECF8B28D /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		61E6EFB9D57BED580DECF771 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				DAC32FB734E14E8AEDF427D4 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		7A7AEBEB137EFE4EF6F90834 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				61E6EFB9D57BED580DECF771 /* iOS */,
+				E82F054CB844A3BF557B19C4 /* Messages.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8E964C132FEAB57300E2414C = {
 			isa = PBXGroup;
 			children = (
@@ -98,6 +180,7 @@
 				8E964C1D2FEAB57300E2414C /* Products */,
 				8E964C532FEAB77800E2414C /* PrivacyNoteClip */,
 				8E964C562FEAB78800E2414C /* PrivacyNoteMessages */,
+				7A7AEBEB137EFE4EF6F90834 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -107,6 +190,8 @@
 				8E964C1C2FEAB57300E2414C /* PrivacyNote.app */,
 				8E964C2D2FEAB57500E2414C /* PrivacyNoteTests.xctest */,
 				8E964C372FEAB57500E2414C /* PrivacyNoteUITests.xctest */,
+				79675FF999D1271C42DC769E /* PrivacyNoteClip.app */,
+				A796C73E3C8CD8F46AF901EF /* PrivacyNoteMessages.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -116,6 +201,8 @@
 			children = (
 				8E964C542FEAB77800E2414C /* AppClipApp.swift */,
 				8E964C552FEAB77800E2414C /* AppClipContentView.swift */,
+				8E964C862FEABE8E00E2414C /* Info.plist */,
+				8E964C882FEABE8E00E2414C /* PrivacyNoteClip.entitlements */,
 			);
 			path = PrivacyNoteClip;
 			sourceTree = "<group>";
@@ -125,6 +212,7 @@
 			children = (
 				8E964C572FEAB78800E2414C /* MessagesViewController.swift */,
 				8E964C582FEAB78A00E2414C /* MessagesRootView.swift */,
+				8E964C892FEABE9400E2414C /* Info.plist */,
 			);
 			path = PrivacyNoteMessages;
 			sourceTree = "<group>";
@@ -132,6 +220,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		51C2217D48D34D6E27712730 /* PrivacyNoteMessages */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2380044573EAC8D2C573BE6B /* Build configuration list for PBXNativeTarget "PrivacyNoteMessages" */;
+			buildPhases = (
+				497E98D126A794FA7DA6818B /* Sources */,
+				643438576B7DE439A7D96EC2 /* Frameworks */,
+				03671BB75187258FF39DC053 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PrivacyNoteMessages;
+			productName = PrivacyNoteMessages;
+			productReference = A796C73E3C8CD8F46AF901EF /* PrivacyNoteMessages.appex */;
+			productType = "com.apple.product-type.app-extension.messages";
+		};
 		8E964C1B2FEAB57300E2414C /* PrivacyNote */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8E964C402FEAB57500E2414C /* Build configuration list for PBXNativeTarget "PrivacyNote" */;
@@ -139,6 +244,8 @@
 				8E964C182FEAB57300E2414C /* Sources */,
 				8E964C192FEAB57300E2414C /* Frameworks */,
 				8E964C1A2FEAB57300E2414C /* Resources */,
+				2DFA0C5252AACF42A4D3702D /* Embed App Clips */,
+				8FE172E48A67A38077286942 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
@@ -148,8 +255,6 @@
 				8E964C1E2FEAB57300E2414C /* PrivacyNote */,
 			);
 			name = PrivacyNote;
-			packageProductDependencies = (
-			);
 			productName = PrivacyNote;
 			productReference = 8E964C1C2FEAB57300E2414C /* PrivacyNote.app */;
 			productType = "com.apple.product-type.application";
@@ -171,8 +276,6 @@
 				8E964C302FEAB57500E2414C /* PrivacyNoteTests */,
 			);
 			name = PrivacyNoteTests;
-			packageProductDependencies = (
-			);
 			productName = PrivacyNoteTests;
 			productReference = 8E964C2D2FEAB57500E2414C /* PrivacyNoteTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -194,11 +297,26 @@
 				8E964C3A2FEAB57500E2414C /* PrivacyNoteUITests */,
 			);
 			name = PrivacyNoteUITests;
-			packageProductDependencies = (
-			);
 			productName = PrivacyNoteUITests;
 			productReference = 8E964C372FEAB57500E2414C /* PrivacyNoteUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		90B382AB129029977F1BA8F9 /* PrivacyNoteClip */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0D76702CE190E5FE4113AA08 /* Build configuration list for PBXNativeTarget "PrivacyNoteClip" */;
+			buildPhases = (
+				7B863454CA40B5FB9F1090CC /* Sources */,
+				BBF83E9A92FDE7DED94F9CA1 /* Frameworks */,
+				5FDAEE7A449A6CBE9C6A0408 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PrivacyNoteClip;
+			productName = PrivacyNoteClip;
+			productReference = 79675FF999D1271C42DC769E /* PrivacyNoteClip.app */;
+			productType = "com.apple.product-type.application.on-demand-install-capable";
 		};
 /* End PBXNativeTarget section */
 
@@ -240,11 +358,27 @@
 				8E964C1B2FEAB57300E2414C /* PrivacyNote */,
 				8E964C2C2FEAB57500E2414C /* PrivacyNoteTests */,
 				8E964C362FEAB57500E2414C /* PrivacyNoteUITests */,
+				90B382AB129029977F1BA8F9 /* PrivacyNoteClip */,
+				51C2217D48D34D6E27712730 /* PrivacyNoteMessages */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		03671BB75187258FF39DC053 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5FDAEE7A449A6CBE9C6A0408 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8E964C1A2FEAB57300E2414C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -269,6 +403,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		497E98D126A794FA7DA6818B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BCE8E47B2FC91E0ED90D1267 /* MessagesViewController.swift in Sources */,
+				9F8BCBF74A0D3901242FB755 /* MessagesRootView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7B863454CA40B5FB9F1090CC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3AC4E776F0619B424218E437 /* AppClipApp.swift in Sources */,
+				F03620CC65717BA30A107E4B /* AppClipContentView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8E964C182FEAB57300E2414C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -306,6 +458,51 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		4AA78B0F84CBB4E38EBCE7AB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = PrivacyNoteMessages/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Cenk-Yilmaz.PrivacyNote.Messages";
+				PRODUCT_NAME = PrivacyNoteMessages;
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		75EC78F0C1A4594B02A084B6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = PrivacyNoteClip/PrivacyNoteClip.entitlements;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = PrivacyNoteClip/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Cenk-Yilmaz.PrivacyNote.Clip";
+				PRODUCT_NAME = PrivacyNoteClip;
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
 		8E964C412FEAB57500E2414C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -614,9 +811,72 @@
 			};
 			name = Release;
 		};
+		EFD7DD6E3B361DB8D9043CAB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = PrivacyNoteMessages/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Cenk-Yilmaz.PrivacyNote.Messages";
+				PRODUCT_NAME = PrivacyNoteMessages;
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F2153E1A0BF10FBF62E70DEE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = PrivacyNoteClip/PrivacyNoteClip.entitlements;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = PrivacyNoteClip/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Cenk-Yilmaz.PrivacyNote.Clip";
+				PRODUCT_NAME = PrivacyNoteClip;
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0D76702CE190E5FE4113AA08 /* Build configuration list for PBXNativeTarget "PrivacyNoteClip" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F2153E1A0BF10FBF62E70DEE /* Release */,
+				75EC78F0C1A4594B02A084B6 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2380044573EAC8D2C573BE6B /* Build configuration list for PBXNativeTarget "PrivacyNoteMessages" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4AA78B0F84CBB4E38EBCE7AB /* Release */,
+				EFD7DD6E3B361DB8D9043CAB /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		8E964C172FEAB57300E2414C /* Build configuration list for PBXProject "PrivacyNote" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
