@@ -204,11 +204,11 @@ struct ComposeView: View {
         step = .uploading
         do {
             let encrypted = try CryptoManager.encrypt(content, pin: pin)
-            let token = try await CloudKitManager.shared.uploadNote(
+            let url = ShareLinkManager.createURL(
                 title: title.isEmpty ? "Gizli Not" : title,
                 encryptedContent: encrypted
             )
-            let url = ShareLinkManager.createTokenURL(title: title, token: token)
+            try await Task.sleep(for: .milliseconds(600)) // brief loading feel
             await MainActor.run {
                 shareURL = url
                 step = .share
