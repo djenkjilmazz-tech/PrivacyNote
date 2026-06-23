@@ -3,23 +3,20 @@ import SwiftUI
 @main
 struct AppClipApp: App {
     @State private var noteTitle = ""
-    @State private var encryptedPayload = ""
+    @State private var noteToken = ""
     @State private var hasPayload = false
 
     var body: some Scene {
         WindowGroup {
             AppClipContentView(
                 title: noteTitle,
-                encryptedPayload: encryptedPayload,
+                token: noteToken,
                 hasPayload: hasPayload
             )
             .onContinueUserActivity(NSUserActivityTypeBrowsingWeb) { activity in
-                guard let url = activity.webpageURL else { return }
-                parseURL(url)
+                if let url = activity.webpageURL { parseURL(url) }
             }
-            .onOpenURL { url in
-                parseURL(url)
-            }
+            .onOpenURL { url in parseURL(url) }
         }
     }
 
@@ -27,12 +24,7 @@ struct AppClipApp: App {
         guard let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
               let items = components.queryItems else { return }
         noteTitle = items.first(where: { $0.name == "t" })?.value ?? ""
-        let raw = items.first(where: { $0.name == "p" })?.value ?? ""
-        let base64 = raw
-            .replacingOccurrences(of: "-", with: "+")
-            .replacingOccurrences(of: "_", with: "/")
-        let padded = base64 + String(repeating: "=", count: (4 - base64.count % 4) % 4)
-        encryptedPayload = padded
-        hasPayload = !raw.isEmpty
+        noteToken = items.first(where: { $0.name == "id" })?.value ?? ""
+        hasPayload = !noteToken.isEmpty
     }
 }

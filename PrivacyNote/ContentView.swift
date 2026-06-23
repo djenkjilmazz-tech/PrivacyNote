@@ -1,110 +1,108 @@
 import SwiftUI
-import SwiftData
 
 struct ContentView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Query(sort: \Note.createdAt, order: .reverse) private var notes: [Note]
-    @State private var showingEditor = false
+    @State private var showingCompose = false
 
     var body: some View {
         NavigationStack {
-            Group {
-                if notes.isEmpty {
-                    emptyState
-                } else {
-                    notesList
+            ZStack {
+                Color(.systemGroupedBackground).ignoresSafeArea()
+
+                VStack(spacing: 0) {
+                    Spacer()
+                    heroSection
+                    Spacer()
+                    composeButton
+                    howItWorksSection
+                    Spacer(minLength: 40)
                 }
             }
-            .navigationTitle("PrivacyNote")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        showingEditor = true
-                    } label: {
-                        Image(systemName: "square.and.pencil")
-                    }
-                }
-            }
-            .sheet(isPresented: $showingEditor) {
-                NoteEditorView()
-            }
+            .navigationTitle("")
+            .navigationBarTitleDisplayMode(.inline)
+        }
+        .sheet(isPresented: $showingCompose) {
+            ComposeView()
         }
     }
 
-    private var emptyState: some View {
-        VStack(spacing: 16) {
-            Image(systemName: "lock.doc")
-                .font(.system(size: 64))
-                .foregroundStyle(.quaternary)
-            Text("Gizli Notunuz Yok")
-                .font(.title2.weight(.semibold))
-            Text("Notlarınız yakınlık sensörü ile korunur.\nOkumak için telefonu yüzünüze yaklaştırın.")
+    // MARK: - Sections
+
+    private var heroSection: some View {
+        VStack(spacing: 14) {
+            Image(systemName: "flame.circle.fill")
+                .font(.system(size: 88))
+                .foregroundStyle(.orange)
+                .symbolEffect(.pulse)
+
+            Text("PrivacyNote")
+                .font(.largeTitle.weight(.bold))
+
+            Text("Gizli mesajlar — bir kez okunur, sonra yok olur")
                 .font(.callout)
                 .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)
-                .padding(.horizontal, 32)
-            Button {
-                showingEditor = true
-            } label: {
-                Label("İlk Notu Oluştur", systemImage: "plus")
-                    .padding(.horizontal, 20)
-                    .padding(.vertical, 10)
-            }
-            .buttonStyle(.borderedProminent)
-            .padding(.top, 8)
+                .padding(.horizontal, 40)
         }
     }
 
-    private var notesList: some View {
-        List {
-            ForEach(notes) { note in
-                NavigationLink {
-                    NoteDetailView(note: note)
-                } label: {
-                    NoteRowView(note: note)
+    private var composeButton: some View {
+        Button {
+            showingCompose = true
+        } label: {
+            HStack(spacing: 10) {
+                Image(systemName: "lock.doc.fill")
+                Text("Yeni Gizli Not Oluştur")
+                    .fontWeight(.semibold)
+            }
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, 16)
+        }
+        .buttonStyle(.borderedProminent)
+        .tint(.orange)
+        .padding(.horizontal, 28)
+        .padding(.bottom, 28)
+    }
+
+    private var howItWorksSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text("Nasıl Çalışır?")
+                .font(.footnote.weight(.semibold))
+                .foregroundStyle(.secondary)
+                .padding(.horizontal, 4)
+
+            VStack(spacing: 0) {
+                ForEach(steps.indices, id: \.self) { i in
+                    HStack(spacing: 14) {
+                        Image(systemName: steps[i].icon)
+                            .foregroundStyle(.orange)
+                            .frame(width: 22)
+                        Text(steps[i].text)
+                            .font(.callout)
+                            .foregroundStyle(.primary)
+                        Spacer()
+                    }
+                    .padding(.vertical, 11)
+                    .padding(.horizontal, 14)
+
+                    if i < steps.count - 1 {
+                        Divider().padding(.leading, 50)
+                    }
                 }
             }
-            .onDelete(perform: deleteNotes)
+            .background(.background, in: RoundedRectangle(cornerRadius: 12))
         }
-        .listStyle(.insetGrouped)
+        .padding(.horizontal, 24)
     }
 
-    private func deleteNotes(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(notes[index])
-            }
-        }
-    }
-}
-
-private struct NoteRowView: View {
-    let note: Note
-
-    var body: some View {
-        HStack(spacing: 12) {
-            ZStack {
-                RoundedRectangle(cornerRadius: 10)
-                    .fill(note.isProtected ? Color.orange.opacity(0.15) : Color.blue.opacity(0.15))
-                    .frame(width: 40, height: 40)
-                Image(systemName: note.isProtected ? "lock.fill" : "doc.text.fill")
-                    .foregroundStyle(note.isProtected ? .orange : .blue)
-            }
-
-            VStack(alignment: .leading, spacing: 4) {
-                Text(note.title.isEmpty ? "Başlıksız" : note.title)
-                    .font(.headline)
-                    .lineLimit(1)
-                Text(note.createdAt.formatted(date: .abbreviated, time: .shortened))
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-            }
-        }
-        .padding(.vertical, 4)
-    }
+    private let steps: [(icon: String, text: String)] = [
+        ("pencil.and.list.clipboard", "Gizli notunu yaz"),
+        ("lock.fill",                 "6 haneli PIN ile şifrele"),
+        ("icloud.and.arrow.up",       "Güvenli sunucuya yüklenir"),
+        ("link",                       "Paylaşılabilir link oluşur"),
+        ("flame.fill",                 "Okunduğunda not yok olur")
+    ]
 }
 
 #Preview {
     ContentView()
-        .modelContainer(for: Note.self, inMemory: true)
 }
