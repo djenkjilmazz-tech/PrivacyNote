@@ -13,6 +13,8 @@
 		7516790B1DD7947005CE868D /* PrivacyNoteMessages.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A796C73E3C8CD8F46AF901EF /* PrivacyNoteMessages.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		830798774AF582A497B2A1D0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAC32FB734E14E8AEDF427D4 /* Foundation.framework */; };
 		8E964CB32FEAC42F00E2414C /* ClipCloudKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E964CB22FEAC42F00E2414C /* ClipCloudKit.swift */; };
+		8E964D8A2FEBEE7800E2414C /* BackendManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E964D892FEBEE7800E2414C /* BackendManager.swift */; };
+		8E964D8C2FEBEE9C00E2414C /* NoteReaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E964D8B2FEBEE9C00E2414C /* NoteReaderView.swift */; };
 		9F8BCBF74A0D3901242FB755 /* MessagesRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E964C582FEAB78A00E2414C /* MessagesRootView.swift */; };
 		BCE8E47B2FC91E0ED90D1267 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E964C572FEAB78800E2414C /* MessagesViewController.swift */; };
 		E7ECA48B5C1BA5FC687B00B5 /* PrivacyNoteClip.app in Embed App Clips */ = {isa = PBXBuildFile; fileRef = 79675FF999D1271C42DC769E /* PrivacyNoteClip.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -75,6 +77,8 @@
 		8E964C882FEABE8E00E2414C /* PrivacyNoteClip.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PrivacyNoteClip.entitlements; sourceTree = "<group>"; };
 		8E964C892FEABE9400E2414C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8E964CB22FEAC42F00E2414C /* ClipCloudKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipCloudKit.swift; sourceTree = "<group>"; };
+		8E964D892FEBEE7800E2414C /* BackendManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendManager.swift; sourceTree = "<group>"; };
+		8E964D8B2FEBEE9C00E2414C /* NoteReaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteReaderView.swift; sourceTree = "<group>"; };
 		A796C73E3C8CD8F46AF901EF /* PrivacyNoteMessages.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PrivacyNoteMessages.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAC32FB734E14E8AEDF427D4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		E82F054CB844A3BF557B19C4 /* Messages.framework */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = Messages.framework; path = System/Library/Frameworks/Messages.framework; sourceTree = SDKROOT; };
@@ -101,15 +105,11 @@
 		};
 		8E964C302FEAB57500E2414C /* PrivacyNoteTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = PrivacyNoteTests;
 			sourceTree = "<group>";
 		};
 		8E964C3A2FEAB57500E2414C /* PrivacyNoteUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = PrivacyNoteUITests;
 			sourceTree = "<group>";
 		};
@@ -184,6 +184,8 @@
 				8E964C532FEAB77800E2414C /* PrivacyNoteClip */,
 				8E964C562FEAB78800E2414C /* PrivacyNoteMessages */,
 				7A7AEBEB137EFE4EF6F90834 /* Frameworks */,
+				8E964D892FEBEE7800E2414C /* BackendManager.swift */,
+				8E964D8B2FEBEE9C00E2414C /* NoteReaderView.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -442,6 +444,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E964D8C2FEBEE9C00E2414C /* NoteReaderView.swift in Sources */,
+				8E964D8A2FEBEE7800E2414C /* BackendManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

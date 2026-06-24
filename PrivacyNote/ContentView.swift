@@ -2,12 +2,12 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var showingCompose = false
+    @State private var incomingNote: IncomingNote? = nil
 
     var body: some View {
         NavigationStack {
             ZStack {
                 Color(.systemGroupedBackground).ignoresSafeArea()
-
                 VStack(spacing: 0) {
                     Spacer()
                     heroSection
@@ -22,6 +22,20 @@ struct ContentView: View {
         }
         .sheet(isPresented: $showingCompose) {
             ComposeView()
+        }
+        .sheet(item: $incomingNote) { note in
+            NoteReaderView(title: note.title, token: note.token)
+        }
+        .onOpenURL { url in
+            if let t = ShareLinkManager.parseToken(url: url) {
+                incomingNote = IncomingNote(title: t.title, token: t.token)
+            }
+        }
+        .onContinueUserActivity(NSUserActivityTypeBrowsingWeb) { activity in
+            if let url = activity.webpageURL,
+               let t = ShareLinkManager.parseToken(url: url) {
+                incomingNote = IncomingNote(title: t.title, token: t.token)
+            }
         }
     }
 
@@ -78,7 +92,6 @@ struct ContentView: View {
                             .frame(width: 22)
                         Text(steps[i].text)
                             .font(.callout)
-                            .foregroundStyle(.primary)
                         Spacer()
                     }
                     .padding(.vertical, 11)
@@ -97,9 +110,9 @@ struct ContentView: View {
     private let steps: [(icon: String, text: String)] = [
         ("pencil.and.list.clipboard", "Gizli notunu yaz"),
         ("lock.fill",                 "6 haneli PIN ile şifrele"),
-        ("icloud.and.arrow.up",       "Güvenli sunucuya yüklenir"),
+        ("icloud.and.arrow.up",       "Şifreli içerik sunucuya yüklenir"),
         ("link",                       "Paylaşılabilir link oluşur"),
-        ("flame.fill",                 "Okunduğunda not yok olur")
+        ("flame.fill",                 "İlk okumada not yok olur")
     ]
 }
 

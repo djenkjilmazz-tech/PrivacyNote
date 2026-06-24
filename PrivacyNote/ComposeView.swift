@@ -203,12 +203,10 @@ struct ComposeView: View {
     private func upload() async {
         step = .uploading
         do {
+            let noteTitle = title.isEmpty ? "Gizli Not" : title
             let encrypted = try CryptoManager.encrypt(content, pin: pin)
-            let url = ShareLinkManager.createURL(
-                title: title.isEmpty ? "Gizli Not" : title,
-                encryptedContent: encrypted
-            )
-            try await Task.sleep(for: .milliseconds(600)) // brief loading feel
+            let token = try await BackendManager.shared.uploadNote(title: noteTitle, encryptedContent: encrypted)
+            let url = ShareLinkManager.createTokenURL(title: noteTitle, token: token)
             await MainActor.run {
                 shareURL = url
                 step = .share
