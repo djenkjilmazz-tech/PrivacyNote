@@ -84,11 +84,11 @@ actor CloudKitManager {
         let receipt = CKRecord(recordType: "ReadReceipt", recordID: receiptID)
         receipt["noteToken"] = token
         receipt["readAt"] = Date()
-        try? await db.save(receipt)
+        _ = try? await db.save(receipt)
 
         // Attempt to delete original (may fail if different user — that's OK,
         // the receipt prevents re-reading)
         let recordID = CKRecord.ID(recordName: "note-\(token)")
-        try? await db.deleteRecord(withID: recordID)
+        _ = try? await db.deleteRecord(withID: recordID)
     }
 }

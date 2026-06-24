@@ -118,7 +118,7 @@ struct NoteReaderView: View {
         VStack(spacing: 20) {
             Spacer()
             Image(systemName: "flame.fill").font(.system(size: 72)).foregroundStyle(.orange)
-                .symbolEffect(.bounce)
+                .symbolEffect(.pulse)
             Text("Oturum Sonlandı").font(.title2.weight(.bold))
             Text("Bu not artık görüntülenemiyor.")
                 .foregroundStyle(.secondary).multilineTextAlignment(.center).padding(.horizontal, 32)
@@ -197,7 +197,7 @@ struct NoteReaderView: View {
                 if err == .alreadyBurned || err == .notFound {
                     step = .burned
                 } else {
-                    errorMsg = err.localizedDescription ?? "Hata"
+                    errorMsg = err.localizedDescription
                     step = .error
                 }
             }
