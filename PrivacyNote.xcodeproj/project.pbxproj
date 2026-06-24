@@ -12,14 +12,12 @@
 		652BFE887390B295ECF8B28D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAC32FB734E14E8AEDF427D4 /* Foundation.framework */; };
 		7516790B1DD7947005CE868D /* PrivacyNoteMessages.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A796C73E3C8CD8F46AF901EF /* PrivacyNoteMessages.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		830798774AF582A497B2A1D0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAC32FB734E14E8AEDF427D4 /* Foundation.framework */; };
-		8E964CB32FEAC42F00E2414C /* ClipCloudKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E964CB22FEAC42F00E2414C /* ClipCloudKit.swift */; };
 		8E964D8A2FEBEE7800E2414C /* BackendManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E964D892FEBEE7800E2414C /* BackendManager.swift */; };
 		8E964D8C2FEBEE9C00E2414C /* NoteReaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E964D8B2FEBEE9C00E2414C /* NoteReaderView.swift */; };
 		9F8BCBF74A0D3901242FB755 /* MessagesRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E964C582FEAB78A00E2414C /* MessagesRootView.swift */; };
 		BCE8E47B2FC91E0ED90D1267 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E964C572FEAB78800E2414C /* MessagesViewController.swift */; };
 		E7ECA48B5C1BA5FC687B00B5 /* PrivacyNoteClip.app in Embed App Clips */ = {isa = PBXBuildFile; fileRef = 79675FF999D1271C42DC769E /* PrivacyNoteClip.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F03620CC65717BA30A107E4B /* AppClipContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E964C552FEAB77800E2414C /* AppClipContentView.swift */; };
-		F8C43AC38645F5BC90791CCD /* ClipCloudKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E964CB22FEAC42F00E2414C /* ClipCloudKit.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,7 +74,6 @@
 		8E964C862FEABE8E00E2414C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8E964C882FEABE8E00E2414C /* PrivacyNoteClip.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PrivacyNoteClip.entitlements; sourceTree = "<group>"; };
 		8E964C892FEABE9400E2414C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		8E964CB22FEAC42F00E2414C /* ClipCloudKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipCloudKit.swift; sourceTree = "<group>"; };
 		8E964D892FEBEE7800E2414C /* BackendManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendManager.swift; sourceTree = "<group>"; };
 		8E964D8B2FEBEE9C00E2414C /* NoteReaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteReaderView.swift; sourceTree = "<group>"; };
 		A796C73E3C8CD8F46AF901EF /* PrivacyNoteMessages.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PrivacyNoteMessages.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -208,7 +205,6 @@
 				8E964C552FEAB77800E2414C /* AppClipContentView.swift */,
 				8E964C862FEABE8E00E2414C /* Info.plist */,
 				8E964C882FEABE8E00E2414C /* PrivacyNoteClip.entitlements */,
-				8E964CB22FEAC42F00E2414C /* ClipCloudKit.swift */,
 			);
 			path = PrivacyNoteClip;
 			sourceTree = "<group>";
@@ -434,9 +430,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AC4E776F0619B424218E437 /* AppClipApp.swift in Sources */,
-				8E964CB32FEAC42F00E2414C /* ClipCloudKit.swift in Sources */,
 				F03620CC65717BA30A107E4B /* AppClipContentView.swift in Sources */,
-				F8C43AC38645F5BC90791CCD /* ClipCloudKit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
