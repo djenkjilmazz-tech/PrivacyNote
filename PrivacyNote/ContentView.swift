@@ -24,19 +24,26 @@ struct ContentView: View {
             ComposeView()
         }
         .sheet(item: $incomingNote) { note in
-            NoteReaderView(title: note.title, token: note.token)
+            NoteReaderView(title: note.title, token: note.token, encryptedPayload: note.encryptedPayload)
         }
         .onOpenURL { url in
-            if let t = ShareLinkManager.parseToken(url: url) {
-                incomingNote = IncomingNote(title: t.title, token: t.token)
-            }
+            incomingNote = parseNote(from: url)
         }
         .onContinueUserActivity(NSUserActivityTypeBrowsingWeb) { activity in
-            if let url = activity.webpageURL,
-               let t = ShareLinkManager.parseToken(url: url) {
-                incomingNote = IncomingNote(title: t.title, token: t.token)
+            if let url = activity.webpageURL {
+                incomingNote = parseNote(from: url)
             }
         }
+    }
+
+    private func parseNote(from url: URL) -> IncomingNote? {
+        if let t = ShareLinkManager.parseToken(url: url) {
+            return IncomingNote(title: t.title, token: t.token, encryptedPayload: nil)
+        }
+        if let p = ShareLinkManager.parse(url: url) {
+            return IncomingNote(title: p.title, token: nil, encryptedPayload: p.encryptedContent)
+        }
+        return nil
     }
 
     // MARK: - Sections
@@ -110,9 +117,9 @@ struct ContentView: View {
     private let steps: [(icon: String, text: String)] = [
         ("pencil.and.list.clipboard", "Gizli notunu yaz"),
         ("lock.fill",                 "6 haneli PIN ile şifrele"),
-        ("icloud.and.arrow.up",       "Şifreli içerik sunucuya yüklenir"),
         ("link",                       "Paylaşılabilir link oluşur"),
-        ("flame.fill",                 "İlk okumada not yok olur")
+        ("iphone.and.arrow.forward",   "Alıcı linki açar, PIN'i girer"),
+        ("flame.fill",                 "Okunduğunda oturum yok olur")
     ]
 }
 

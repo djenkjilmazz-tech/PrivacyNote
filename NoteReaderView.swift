@@ -3,12 +3,14 @@ import SwiftUI
 struct IncomingNote: Identifiable {
     let id = UUID()
     let title: String
-    let token: String
+    let token: String?            // server-based (Supabase)
+    let encryptedPayload: String? // URL-based fallback
 }
 
 struct NoteReaderView: View {
     let title: String
-    let token: String
+    let token: String?
+    let encryptedPayload: String?
 
     @Environment(\.dismiss) private var dismiss
     @Environment(\.scenePhase) private var scenePhase
@@ -25,6 +27,8 @@ struct NoteReaderView: View {
 
     private enum Step { case fetching, enterPin, wrongPin, content, burned, error }
     private let pinLength = 6
+
+    private var isServerBased: Bool { token != nil && BackendConfig.isConfigured }
 
     var body: some View {
         NavigationStack {
@@ -184,6 +188,21 @@ struct NoteReaderView: View {
     // MARK: - Logic
 
     private func loadNote() async {
+        // URL-based mode: content already in payload, skip server fetch
+        if let payload = encryptedPayload {
+            encryptedContent = payload
+            attemptsLeft = 3
+            await MainActor.run { step = .enterPin }
+            try? await Task.sleep(for: .milliseconds(200))
+            await MainActor.run { pinFocused = true }
+            return
+        }
+
+        // Server-based mode: fetch from Supabase
+        guard let token else {
+            await MainActor.run { errorMsg = "Geçersiz bağlantı"; step = .error }
+            return
+        }
         do {
             let row = try await BackendManager.shared.fetchNote(token: token)
             encryptedContent = row.encryptedContent
@@ -211,23 +230,34 @@ struct NoteReaderView: View {
             let text = try CryptoManager.decrypt(encryptedContent, pin: pin)
             await MainActor.run { decryptedContent = text; step = .content }
         } catch {
-            do {
-                let remaining = try await BackendManager.shared.recordWrongAttempt(
-                    token: token, currentServerCount: serverWrongAttempts)
-                serverWrongAttempts += 1
-                await MainActor.run { pinInput = ""; attemptsLeft = remaining; step = .wrongPin }
-            } catch BackendError.tooManyAttempts {
-                await MainActor.run { step = .burned }
-            } catch {
-                await MainActor.run { pinInput = ""; attemptsLeft -= 1
-                    step = attemptsLeft > 0 ? .wrongPin : .burned }
+            if isServerBased, let token {
+                do {
+                    let remaining = try await BackendManager.shared.recordWrongAttempt(
+                        token: token, currentServerCount: serverWrongAttempts)
+                    serverWrongAttempts += 1
+                    await MainActor.run { pinInput = ""; attemptsLeft = remaining; step = .wrongPin }
+                } catch BackendError.tooManyAttempts {
+                    await MainActor.run { step = .burned }
+                } catch {
+                    await MainActor.run { pinInput = ""; attemptsLeft -= 1
+                        step = attemptsLeft > 0 ? .wrongPin : .burned }
+                }
+            } else {
+                // URL-based: local attempt tracking only
+                await MainActor.run {
+                    pinInput = ""
+                    attemptsLeft -= 1
+                    step = attemptsLeft > 0 ? .wrongPin : .burned
+                }
             }
         }
     }
 
     private func burnAndClose() async {
         stopScreenshotWatcher()
-        await BackendManager.shared.burnNote(token: token)
+        if isServerBased, let token {
+            await BackendManager.shared.burnNote(token: token)
+        }
         await MainActor.run { withAnimation(.easeInOut(duration: 0.25)) { step = .burned } }
     }
 }

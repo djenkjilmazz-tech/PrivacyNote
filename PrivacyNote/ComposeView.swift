@@ -205,8 +205,16 @@ struct ComposeView: View {
         do {
             let noteTitle = title.isEmpty ? "Gizli Not" : title
             let encrypted = try CryptoManager.encrypt(content, pin: pin)
-            let token = try await BackendManager.shared.uploadNote(title: noteTitle, encryptedContent: encrypted)
-            let url = ShareLinkManager.createTokenURL(title: noteTitle, token: token)
+            let url: URL?
+            if BackendConfig.isConfigured {
+                // Server-side burn-after-read (requires Supabase setup)
+                let token = try await BackendManager.shared.uploadNote(title: noteTitle, encryptedContent: encrypted)
+                url = ShareLinkManager.createTokenURL(title: noteTitle, token: token)
+            } else {
+                // URL-based: works without any server setup
+                try await Task.sleep(for: .milliseconds(600))
+                url = ShareLinkManager.createURL(title: noteTitle, encryptedContent: encrypted)
+            }
             await MainActor.run {
                 shareURL = url
                 step = .share
